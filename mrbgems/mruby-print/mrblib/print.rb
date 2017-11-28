@@ -25,8 +25,8 @@ module Kernel
     len = args.size
     while i < len
       s = args[i].to_s
+      s += "\n" if (s[-1] != "\n")
       __printstr__ s
-      __printstr__ "\n" if (s[-1] != "\n")
       i += 1
     end
     __printstr__ "\n" if len == 0
@@ -41,8 +41,7 @@ module Kernel
     i = 0
     len = args.size
     while i < len
-      __printstr__ args[i].inspect
-      __printstr__ "\n"
+      __printstr__ args[i].inspect + "\n"
       i += 1
     end
     args[0]

@@ -33,7 +33,15 @@ printstr(mrb_state *mrb, mrb_value obj)
     } else
 #endif
       fwrite(RSTRING_PTR(obj), RSTRING_LEN(obj), 1, stdout);
+#ifndef EMSCRIPTEN
     fflush(stdout);
+#else
+    if(RSTRING_LEN(obj)>0){
+      if(RSTRING_PTR(obj)[RSTRING_LEN(obj)-1] != 10){
+        fwrite(0, 0, 1, stdout);
+      }
+    }
+#endif
   }
 }
 
